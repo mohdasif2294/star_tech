@@ -8,7 +8,8 @@
   ],
   "browser_action": {
      "default_icon": "ronaldo.jpg",
-     "default_popup": "basic.html"
+     "default_popup": "example.html"
   },
+  "content_security_policy":"script-src 'self' https://apis.google.com; object-src 'self'",
   "manifest_version": 2
 }
