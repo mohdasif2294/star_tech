@@ -7,6 +7,6 @@ import Popup from "./Popup";
 browser.runtime.sendMessage({ data: "hello" });
 
 ReactDOM.render(
-  <Popup text="Ext boilerplate" />,
+  <Popup text="Myn-Tron" />,
   document.getElementById("root")
 );
