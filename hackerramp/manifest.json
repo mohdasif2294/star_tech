@@ -1,7 +1,7 @@
 {
-  "name": "Getting Started Example",
+  "name": "MyntraFilter",
   "version": "1.0",
-  "description": "Build an Extension!",
+  "description": "MyntraFilter",
   "manifest_version": 2,
   "permissions": ["storage","declarativeContent","activeTab","tabs","http://*/","https://*/","unlimitedStorage"],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
