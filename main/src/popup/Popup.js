@@ -60,7 +60,7 @@ let Popup = createReactClass({
         </div>
 
         <div className="row container-fluid ">
-          {self.state.actionType == "view-profile"?<viewProfile />:<AddProfile />}
+          {self.state.actionType == "view-profile"?<ViewProfile />:<AddProfile />}
         </div>
       </div>
     );
