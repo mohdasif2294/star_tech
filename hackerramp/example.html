@@ -8,18 +8,110 @@
 </head>
 <body>
 <div>
-    <h1>Star Tech</h1>
-
-    <h3>Category:</h3>
+    <img src="myntra_icon.jpeg" class="center">
+    <h3 style="font-family:verdana;">Category</h3>
     <div class="single-select"></div>
 
-    <h3>Brands</h3>
+    <h3 style="font-family:verdana;">Brands</h3>
     <div class="autocomplete-select"></div>
+    <h3 style="font-family:verdana;">Size</h3>
+    
 
 </div>
 <script type="module" src="category_products.js"></script>
+<!-- <div style="margin:0 auto;">
+    <button class="button button5">XS</button>
+    <button class="button button5">S</button>
+    <button class="button button5">M</button>
+    <button class="button button5">L</button>
+    <button class="button button5">XL</button>
+    <button class="button button5">XXL</button>
+</div>
+<hr> -->
+<div class="btn-group" style="width:100%">
+    <button style="width:25%">XS</button>
+    <button style="width:25%">S</button>
+    <button style="width:25%">M</button>
+    <button style="width:25%">L</button>
+</div>
+
+<div>
+    <button class="newbuutton buutton5">XS</button>
+    <button class="newbuutton buutton5">S</button>
+    <button class="newbuutton buutton5">M</button>
+    <button class="newbuutton buutton5">L</button>
+</div>
+
 <style>
+    .newbuutton {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.buutton5 {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+    .btn-group button {
+  background-color: #59d9d4; /* Green background */
+  border: 1px solid #5f083e; /* Green border */
+  color: black; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: pink;
+}
+    .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+  height: 20%;
+}
+.button {
+  background-color:#59d9d4;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+}
+.button5 {border-radius: 40%;}
+    .main-heading {
+        text-align: center;
+    }
     body {
+        background-image: url('');
+        background-size: 100% 100%;
+        border-radius: 10px;
+        border: 5px solid rgba(196, 6, 180, 0.479);
         font-family: "Roboto", sans-serif;
         height: 640px;
         width: 400px;
