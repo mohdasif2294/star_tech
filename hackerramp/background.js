@@ -38,20 +38,20 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     var myNewUrl = "https://www.myntra.com/shoes";
-    console.log(myNewUrl);
-    console.log(tab);
+    //console.log(myNewUrl);
+    //console.log(tab);
     if (tab.url == "https://www.myntra.com/")
     {
         chrome.storage.sync.get('profile', function(data){
             console.log(data.profile);
             var category = Object.keys(data.profile)
-            console.log("keysss", category[0])
-            console.log("normal brand", data.profile[category[0]]['brands'])
+            //console.log("keysss", category[0])
+            //console.log("normal brand", data.profile[category[0]]['brands'])
             var myNewUrl = "https://www.myntra.com/" + category[0] + "?f="
             console.log(myNewUrl);
             uri = "Brand:" + data.profile[category[0]]['brands']
             var uri_enc = encodeURIComponent(uri);
-            console.log("my new url is", myNewUrl + uri_enc);
+            //console.log("my new url is", myNewUrl + uri_enc);
             myNewUrl=myNewUrl+uri_enc
             chrome.tabs.update(tabId, {url:  myNewUrl});
         });

@@ -3,13 +3,12 @@ window.onload = function(){
 		var category = document.getElementById('category').value;
 		var brand = document.getElementById('brand').value;
 		var size = document.getElementById('size').value;
-		var obj = {}
-		obj[category] = {"brands":brand, "size":size}
-		chrome.storage.sync.set({'profile': obj},function(){
-		console.log("before alert");
-		alert('Success!');
-		console.log("here", obj);
-	});
+		chrome.storage.sync.get('profile',function(items) {
+			items.profile[category] = {"brands":brand, "size":size}
+			chrome.storage.sync.set(items, function() {
+				console.log('Data successfully saved to the storage!');
+			});
+		});
 	}
 	document.getElementById('get').onclick = function (){
 		chrome.storage.sync.get('profile', function(data){
