@@ -4,11 +4,21 @@
   "description" : "A trivial usage example.",
   "permissions": [
     "browsingData",
-    "tabs"
+    "tabs",
+    "storage",
+   "declarativeContent"
   ],
+  "background": {
+    "scripts": ["b.js"],
+    "persistent": false
+  },
+"content_scripts": [{
+      "matches": ["https://*.myntra.com/"],
+      "js": ["content.js"]
+  }],
   "browser_action": {
-     "default_icon": "ronaldo.jpg",
-     "default_popup": "basic.html"
+    "default_popup": "basic.html",
+    "default_icon": "ronaldo.jpg"
   },
   "manifest_version": 2
 }
