@@ -1,24 +1,31 @@
 {
-  "name" : "BrowsingData API: Basics",
-  "version" : "1.1",
-  "description" : "A trivial usage example.",
-  "permissions": [
-    "browsingData",
-    "tabs",
-    "storage",
-   "declarativeContent"
-  ],
+  "name": "Getting Started Example",
+  "version": "1.0",
+  "description": "Build an Extension!",
+  "manifest_version": 2,
+  "permissions": ["storage","declarativeContent","activeTab","tabs","http://*/","https://*/","unlimitedStorage"],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "background": {
-    "scripts": ["b.js"],
+    "scripts": ["background.js"],
     "persistent": false
   },
-"content_scripts": [{
-      "matches": ["https://*.myntra.com/"],
-      "js": ["content.js"]
+  "content_scripts": [{
+    "matches": ["https://*.myntra.com/"],
+    "js": ["contentScript.js"]
   }],
-  "browser_action": {
-    "default_popup": "basic.html",
-    "default_icon": "ronaldo.jpg"
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/get_started16.png",
+      "32": "images/get_started32.png",
+      "48": "images/get_started48.png",
+      "128": "images/get_started128.png"
+    }
   },
-  "manifest_version": 2
+  "icons": {
+    "16": "images/get_started16.png",
+    "32": "images/get_started32.png",
+    "48": "images/get_started48.png",
+    "128": "images/get_started128.png"
+  }
 }
