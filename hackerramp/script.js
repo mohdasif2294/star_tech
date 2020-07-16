@@ -3,8 +3,6 @@ window.onload = function(){
 		var category = document.getElementById('category').value;
 		var brand = document.getElementById('brand').value;
 		var size = document.getElementById('size').value;
-		//alert(value);
-		//alert(category);
 		var obj = {}
 		obj[category] = {"brands":brand, "size":size}
 		chrome.storage.sync.set({'profile': obj},function(){
