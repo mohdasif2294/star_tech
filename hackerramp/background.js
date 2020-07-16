@@ -40,19 +40,30 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     var myNewUrl = "https://www.myntra.com/shoes";
     //console.log(myNewUrl);
     //console.log(tab);
-    if (tab.url == "https://www.myntra.com/")
+     var rs = tab.url.split("/");
+     console.log(rs);
+    var urlobj = new URL(tab.url);
+    //console.log(pathname);
+    if ( urlobj.host == "www.myntra.com")
     {
         chrome.storage.sync.get('profile', function(data){
             console.log(data.profile);
-            var category = Object.keys(data.profile)
+            var category = Object.keys(data.profile);
+            var pathname = urlobj.pathname.split("/").slice(-1)[0];
+            console.log(pathname);
+            if (category.includes(pathname)){
+                var uri = "Brand:" + data.profile[pathname]['brands'];
+                var uri_enc = encodeURIComponent(uri);
+                var myNewUrl = urlobj.origin+urlobj.pathname+urlobj.search+uri_enc;
+                console.log(myNewUrl);
+            }
             //console.log("keysss", category[0])
             //console.log("normal brand", data.profile[category[0]]['brands'])
-            var myNewUrl = "https://www.myntra.com/" + category[0] + "?f="
-            console.log(myNewUrl);
-            uri = "Brand:" + data.profile[category[0]]['brands']
-            var uri_enc = encodeURIComponent(uri);
-            //console.log("my new url is", myNewUrl + uri_enc);
-            myNewUrl=myNewUrl+uri_enc
+
+            // uri = "Brand:" + data.profile[category[0]]['brands']
+            //
+            // //console.log("my new url is", myNewUrl + uri_enc);
+            // myNewUrl=myNewUrl+uri_enc
             chrome.tabs.update(tabId, {url:  myNewUrl});
         });
         //chrome.tabs.update(sender.tab.id, {url: newURL})
