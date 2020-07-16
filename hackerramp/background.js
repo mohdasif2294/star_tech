@@ -37,13 +37,9 @@ chrome.runtime.onInstalled.addListener(function() {
     });
 });
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    var myNewUrl = "https://www.myntra.com/shoes";
-    //console.log(myNewUrl);
-    //console.log(tab);
-     var rs = tab.url.split("/");
-     console.log(rs);
     var urlobj = new URL(tab.url);
-    //console.log(pathname);
+    console.log(tab.url);
+    console.log(urlobj);
     if ( urlobj.host == "www.myntra.com")
     {
         chrome.storage.sync.get('profile', function(data){
@@ -51,22 +47,37 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
             var category = Object.keys(data.profile);
             var pathname = urlobj.pathname.split("/").slice(-1)[0];
             console.log(pathname);
+            var tempbrand=[];
+            var uri="";
+            var uri_enc ="";
             if (category.includes(pathname)){
-                var uri = "Brand:" + data.profile[pathname]['brands'];
-                var uri_enc = encodeURIComponent(uri);
+                if (urlobj.search === "")
+                {
+                    urlobj.search="?f=";
+                    uri = "Brand:" + data.profile[pathname]['brands'];
+                    uri_enc = encodeURIComponent(uri);
+                } else {
+                    for (brand in data.profile[pathname]['brands']) {
+                        if  (!urlobj.search.includes(data.profile[pathname]['brands'][brand])) {
+                            tempbrand.push(data.profile[pathname]['brands'][brand]);
+                            console.log(data.profile[pathname]['brands'][brand]);
+                        }
+                    }
+                    if (tempbrand.length > 0)
+                    {
+                        uri = ','+tempbrand;
+                        uri_enc = encodeURIComponent(uri);
+                    }
+
+                }
+                //var uri_enc = encodeURIComponent(uri);
                 var myNewUrl = urlobj.origin+urlobj.pathname+urlobj.search+uri_enc;
                 console.log(myNewUrl);
             }
-            //console.log("keysss", category[0])
-            //console.log("normal brand", data.profile[category[0]]['brands'])
-
-            // uri = "Brand:" + data.profile[category[0]]['brands']
-            //
-            // //console.log("my new url is", myNewUrl + uri_enc);
-            // myNewUrl=myNewUrl+uri_enc
-            chrome.tabs.update(tabId, {url:  myNewUrl});
+            if (tab.url != myNewUrl){
+                chrome.tabs.update(tabId, {url:  myNewUrl});
+            }
         });
-        //chrome.tabs.update(sender.tab.id, {url: newURL})
     }
     
 });
