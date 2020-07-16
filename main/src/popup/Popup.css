@@ -1,6 +1,6 @@
-.popup {
-  text-align: center;
-  width: 800px;
+.popup-container {
+  width: 400px !important;
+  height: 600px !important;
 }
 
 .popup-greet {

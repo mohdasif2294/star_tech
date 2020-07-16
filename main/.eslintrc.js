@@ -35,12 +35,21 @@ module.exports = {
         "array": false
       }
     ],
-    indent: ['error', 2, { SwitchCase: 1 }],
+    indent: ['error', 2, {
+      SwitchCase: 1
+    }],
     'linebreak-style': ['error', 'unix'],
-    quotes: ['error', 'single', { allowTemplateLiterals: true }],
-    semi: ['error', 'always'],
+    quotes: [1, 'single', {
+      allowTemplateLiterals: true
+    }],
+    semi: [1, 'always'],
+    rules: {
+      'jsx-quotes': [2, 'prefer-single'],
+    },
     'react/jsx-uses-vars': 1,
     'react/jsx-uses-react': 1,
-    'spaced-comment': ['error', 'always', { exceptions: ['-', '+'] }],
+    'spaced-comment': ['error', 'always', {
+      exceptions: ['-', '+']
+    }],
   },
 };
