@@ -1,6 +1,6 @@
 import React from "react";
 // import "./Popup.css";
-import "../css/flat-ui.min.css";
+import "../css/bootstrap.min.css";
 
 const Popup = () => {
   return (
