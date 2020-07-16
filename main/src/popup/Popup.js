@@ -2,6 +2,7 @@ import React from "react";
 
 import "../css/bootstrap.min.css";
 import "./index.css";
+import AddProfile from './AddProfile.js';
 
 const Popup = () => {
   return (
@@ -38,6 +39,7 @@ const Popup = () => {
           </li>
         </ul>
       </div>
+      <AddProfile/>
     </div>
   );
 };
