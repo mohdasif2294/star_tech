@@ -80,3 +80,29 @@ code {
 }
 
 .popup-container {}
+
+.margin-top {
+  margin-top: 18px;
+}
+
+.select-width {
+  width: 69% !important;
+}
+
+.content {
+  font-size: 17px;
+  line-height: 2;
+  font-family: Lato;
+}
+
+.fontBold {
+  color: #485460;
+  font-weight: bold;
+}
+
+
+.submitBtnStyle {
+  /* margin-right: 40px; */
+  padding: 4px !important;
+  color: #fff
+}
