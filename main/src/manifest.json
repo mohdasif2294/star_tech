@@ -34,7 +34,7 @@
     "sidebar.html"
   ],
   "options_ui": {
-    "page": "./options.html",
+    "page": "popup.html",
     "open_in_tab": true
   }
 }

@@ -5,6 +5,7 @@ import "./index.css";
 import AddProfile from './AddProfile.js';
 
 const Popup = () => {
+  
   return (
     <div className="row container-fluid">
       <div className="row container-fluid">
@@ -20,26 +21,28 @@ const Popup = () => {
           <h4 className="head-title">Myn-Tron</h4>
         </div>
       </div>
+
       <div className="row container-fluid ">
         <ul className="nav nav-tabs navBar">
           <li className="nav-item nav-width">
-            <a className="nav-link active" href="#">
+            <a className="nav-link active" href="#" >
               Add Profile
             </a>
           </li>
           <li className="nav-item nav-width">
-            <a className="nav-link" href="#">
+            <a className="nav-link" href="#" >
               View Profile
             </a>
           </li>
           <li className="nav-item nav-width">
-            <a className="nav-link" href="#">
+            <a className="nav-link" href="#" >
               Edit Profile
             </a>
           </li>
         </ul>
       </div>
-      <AddProfile/>
+      
+      <div className="row container-fluid "><AddProfile/></div>
     </div>
   );
 };
