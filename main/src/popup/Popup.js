@@ -6,24 +6,32 @@ import AddProfile from "./AddProfile.js";
 import ViewProfile from "./ViewProfile.js";
 var createReactClass = require('create-react-class');
 
+
 let Popup = createReactClass({
   getInitialState: function() {
     return {
-      actionType:""
+      actionType:"",
+      viewProfileClass:"nav-link",
+      addProfileClass:"nav-link active"
+
     }
   },
 
   addProfile: function(){
     this.setState({
-      actionType:"active-profile"
+      actionType:"active-profile",
+      addProfileClass: "nav-link active",
+      viewProfileClass: "nav-link"
     })
 
   },
   viewProfile: function(){
     this.setState({
-      actionType:"view-profile"
+      actionType:"view-profile",
+      viewProfileClass: "nav-link active",
+      addProfileClass: "nav-link"
+      
     })
-
   },
 
   render: function() {
@@ -47,12 +55,12 @@ let Popup = createReactClass({
         <div className="row container-fluid ">
           <ul className="nav nav-tabs navBar">
             <li className="nav-item nav-width">
-              <a className="nav-link active" href="#" onClick={self.addProfile}>
+              <a className={self.state.addProfileClass} href="#" onClick={self.addProfile}>
                 Add Profile
               </a>
             </li>
             <li className="nav-item nav-width">
-              <a className="nav-link" href="#" onClick={self.viewProfile}>
+              <a className={self.state.viewProfileClass} href="#" onClick={self.viewProfile}>
                 View Profile
               </a>
             </li>

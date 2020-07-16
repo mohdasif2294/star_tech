@@ -86,7 +86,8 @@ code {
 }
 
 .select-width {
-  width: 69% !important;
+  width: 74% !important;
+  cursor: pointer;
 }
 
 .content {
@@ -105,4 +106,5 @@ code {
   /* margin-right: 40px; */
   padding: 4px !important;
   color: #fff
+
 }

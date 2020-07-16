@@ -71,7 +71,7 @@ let ViewProfile = createReactClass({
             </select>
           </div>
           <div className="row container-fluid">
-            <div className="ol-md-4 col-lg-4 col-xs-offset-3 col-xs-6 margin-top">
+            <div className="col-md-4 col-lg-4 col-xs-offset-3 col-xs-6 margin-top" style={{textAlign:"center"}}>
               <button
                 style={{ backgroundColor: "#e74c3c" }}
                 className="btn submitBtnStyle"

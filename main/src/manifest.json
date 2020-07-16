@@ -2,11 +2,11 @@
   "version": "1.0",
   "manifest_version": 2,
   "name": "Mynt-Tron",
-  "description": "Get what you want, instead of what they want you to get.",
+  "description": "Choose less and feel better",
   "content_scripts": [
     {
       "matches": [
-        "http://*.myntra.com/"
+        "https://*.myntra.com/"
       ],
       "js": [
         "lib/js/browser-polyfill.js",
@@ -14,27 +14,20 @@
       ]
     }
   ],
+
   "background": {
     "scripts": [
       "lib/js/browser-polyfill.js",
       "background.js"
-    ]
+    ],   "persistent": false
   },
-  "browser_action": {
+  "page_action": {
     "default_icon": "img/logo.png",
     "default_popup": "popup.html"
   },
-  "permissions": [
-    "storage"
-  ],
+  "permissions": ["storage","declarativeContent","activeTab","tabs","http://*/","https://*/","unlimitedStorage"],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "icons": {
     "128": "img/logo.png"
-  },
-  "web_accessible_resources": [
-    "sidebar.html"
-  ],
-  "options_ui": {
-    "page": "popup.html",
-    "open_in_tab": true
   }
 }
