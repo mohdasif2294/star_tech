@@ -42,7 +42,7 @@ module.exports = {
     quotes: [1, 'single', {
       allowTemplateLiterals: true
     }],
-    semi: ['error', 'always'],
+    semi: [1, 'always'],
     rules: {
       'jsx-quotes': [2, 'prefer-single'],
     },
