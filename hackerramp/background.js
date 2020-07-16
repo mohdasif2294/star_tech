@@ -58,7 +58,8 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
                     uri_enc = encodeURIComponent(uri);
                 } else {
                     for (brand in data.profile[pathname]['brands']) {
-                        if  (!urlobj.search.includes(data.profile[pathname]['brands'][brand])) {
+                        var uridec = decodeURIComponent(urlobj.search);
+                        if  (!uridec.includes(data.profile[pathname]['brands'][brand])) {
                             tempbrand.push(data.profile[pathname]['brands'][brand]);
                             console.log(data.profile[pathname]['brands'][brand]);
                         }
