@@ -4,38 +4,34 @@ import "../css/bootstrap.min.css";
 import "./index.css";
 import AddProfile from "./AddProfile.js";
 import ViewProfile from "./ViewProfile.js";
-var createReactClass = require('create-react-class');
-
+var createReactClass = require("create-react-class");
 
 let Popup = createReactClass({
   getInitialState: function() {
     return {
-      actionType:"",
-      viewProfileClass:"nav-link",
-      addProfileClass:"nav-link active"
-
-    }
+      actionType: "",
+      viewProfileClass: "nav-link",
+      addProfileClass: "nav-link active"
+    };
   },
 
-  addProfile: function(){
+  addProfile: function() {
     this.setState({
-      actionType:"active-profile",
+      actionType: "active-profile",
       addProfileClass: "nav-link active",
       viewProfileClass: "nav-link"
-    })
-
+    });
   },
-  viewProfile: function(){
+  viewProfile: function() {
     this.setState({
-      actionType:"view-profile",
+      actionType: "view-profile",
       viewProfileClass: "nav-link active",
       addProfileClass: "nav-link"
-      
-    })
+    });
   },
 
   render: function() {
-    let self = this
+    let self = this;
     return (
       <div className="row container-fluid">
         <div className="row container-fluid">
@@ -55,12 +51,20 @@ let Popup = createReactClass({
         <div className="row container-fluid ">
           <ul className="nav nav-tabs navBar">
             <li className="nav-item nav-width">
-              <a className={self.state.addProfileClass} href="#" onClick={self.addProfile}>
+              <a
+                className={self.state.addProfileClass}
+                href="#"
+                onClick={self.addProfile}
+              >
                 Add Profile
               </a>
             </li>
             <li className="nav-item nav-width">
-              <a className={self.state.viewProfileClass} href="#" onClick={self.viewProfile}>
+              <a
+                className={self.state.viewProfileClass}
+                href="#"
+                onClick={self.viewProfile}
+              >
                 View Profile
               </a>
             </li>
@@ -68,7 +72,11 @@ let Popup = createReactClass({
         </div>
 
         <div className="row container-fluid ">
-          {self.state.actionType == "view-profile"?<ViewProfile />:<AddProfile />}
+          {self.state.actionType == "view-profile" ? (
+            <ViewProfile />
+          ) : (
+            <AddProfile />
+          )}
         </div>
       </div>
     );
