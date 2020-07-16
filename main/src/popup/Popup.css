@@ -1,0 +1,14 @@
+.popup-container {
+  width: 400px !important;
+  height: 600px !important;
+}
+
+.navBar{
+  width: 100%;
+
+}
+
+.logo {
+  height: 40px;
+  padding-right: 1.8em;
+}

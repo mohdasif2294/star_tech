@@ -1,0 +1,108 @@
+@font-face {
+  font-family: 'Lato';
+  src: local('Lato'), url(../fonts/lato/lato-regular.woff) format('woff');
+}
+
+.navBar {
+  width: 100%;
+}
+
+.nav-width {
+  width: 30%;
+  font-family: Lato;
+  font-weight: bold;
+
+}
+
+.nav-width>a {
+  color: #129191;
+}
+
+.nav-link.active {
+  color: #054e4b;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+
+.tab-list {
+  border-bottom: 1px solid #ccc;
+  padding-left: 0;
+}
+
+.tab-list-item {
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  padding: 0.5rem 0.75rem;
+}
+
+.tab-list-active {
+  background-color: white;
+  border: solid #ccc;
+  border-width: 1px 1px 0 1px;
+}
+
+.head-title {
+  line-height: 2.5;
+  font-weight: bold;
+  color: #fc5c65;
+  margin-left: -2px;
+}
+
+.img-logo {
+  /* margin-top: 4px; */
+  /* width: 50px; */
+  height: 58px !important;
+  margin-right: -44px;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border: 1px solid #a0a1a2e3;
+  width: 368px !important;
+  height: 560px !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.popup-container {}
+
+.margin-top {
+  margin-top: 18px;
+}
+
+.select-width {
+  width: 69% !important;
+}
+
+.content {
+  font-size: 17px;
+  line-height: 2;
+  font-family: Lato;
+}
+
+.fontBold {
+  color: #485460;
+  font-weight: bold;
+}
+
+
+.submitBtnStyle {
+  /* margin-right: 40px; */
+  padding: 4px !important;
+  color: #fff
+}

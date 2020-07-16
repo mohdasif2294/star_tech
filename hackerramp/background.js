@@ -71,7 +71,6 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
                     }
 
                 }
-                //var uri_enc = encodeURIComponent(uri);
                 var myNewUrl = urlobj.origin+urlobj.pathname+urlobj.search+uri_enc;
                 console.log(myNewUrl);
             }
@@ -80,5 +79,4 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
             }
         });
     }
-    
 });
