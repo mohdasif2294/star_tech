@@ -1,22 +1,37 @@
 import React from "react";
 // import "./Popup.css";
 import "../css/flat-ui.min.css";
-import { Tabs,Tab } from "react-bootstrap";
 
 const Popup = () => {
   return (
     <div className="row container-fluid">
-      <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-        <Tab eventKey="home" title="Home">
-          tesfs
-        </Tab>
-        <Tab eventKey="profile" title="Profile" >
-          trst
-        </Tab>
-        <Tab eventKey="contact" title="Contact">
-         test2
-        </Tab>
-      </Tabs>
+      <ul className="nav nav-tabs">
+        <li className="nav-item">
+          <a className="nav-link active" href="#">
+            Active
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="#">
+            Link
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="#">
+            Link
+          </a>
+        </li>
+        <li className="nav-item">
+          <a
+            className="nav-link disabled"
+            href="#"
+            tabIndex="-1"
+            aria-disabled="true"
+          >
+            Disabled
+          </a>
+        </li>
+      </ul>
     </div>
   );
 };
