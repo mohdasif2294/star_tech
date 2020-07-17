@@ -91,20 +91,6 @@ let ViewProfile = createReactClass({
 
   onSelect: function(e) {
     if (e.target.value == "disabled") {
-      this.setState({
-        selectedProfile: "shoes",
-        profileList: ["shoes", "tshirt", "trousers"],
-        isLoaded: true,
-        profileDetails: {
-          brandList: [
-            { id: 0, name: "Levis" },
-            { id: 1, name: "Puma" }
-          ],
-          sizeList: ["M", "XS", "L"],
-          genderList: "male",
-          colorList: ["RED", "ORANGE", "GREEN"]
-        }
-      });
       return;
     }
 
@@ -180,7 +166,7 @@ let ViewProfile = createReactClass({
       }
     }
 
-    console.log("Brands:" ,brands)
+    console.log("Brands:", brands);
 
     return (
       <div className="row container-fluid margin-top">
@@ -193,10 +179,7 @@ let ViewProfile = createReactClass({
               onChange={self.onSelect}
             >
               <option value="disabled" key="a_b" defaultValue>
-                Choose Profile
-              </option>
-              <option value="disabled1" key="a_b1">
-                test
+                Choose Category Profile
               </option>
               {self.state.profileList.map(function(profile, idx) {
                 return (
