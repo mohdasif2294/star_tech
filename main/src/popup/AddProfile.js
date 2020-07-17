@@ -27,7 +27,8 @@ let MainComponent = createReactClass({
       selectedCategoryValue: [],
       selectedBrandValue: [],
       value: { min: 2, max: 10 },
-      gender:""
+      gender:"",
+      color:""
     };
   },
   onSelect: function(value) {
@@ -76,10 +77,13 @@ let MainComponent = createReactClass({
   onApply: function () {
     var finalCategory = []
     var finalBrands = []
+    var finalcolors = []
     var category = this.state.selectedCategoryValue
     var brands = this.state.selectedBrandValue
     var gender = this.state.gender
     var sizes = ['M']
+    var color = this.state.color
+    finalcolors.push(color)
     for (var index = 0; index < category[0].length; index++) {  
          finalCategory.push(category[0][index].name)
     } 
@@ -91,7 +95,8 @@ let MainComponent = createReactClass({
         if (typeof items.profile === 'undefined'){
             items.profile = {};
         }
-        items.profile[finalCategory[0]] = {"brands":finalBrands, "size":sizes}
+        delete items.profile.selectedProfile;
+        items.profile[finalCategory[0]] = {"brands":finalBrands, "sizes":sizes, "gender":gender, "colors":finalcolors}
         chrome.storage.sync.set(items, function() {
             console.log('Data successfully saved to the storage!');
         });
@@ -101,6 +106,14 @@ let MainComponent = createReactClass({
         alert(JSON.stringify(data['profile']));
     });
     //alert("Your filter are saved successfully, head to View Profile page for details")
+  },
+  onSizeChange: function(value) {
+    console.log(value)
+  },
+  setColor: function(event) {
+   this.setState({
+       color: event.target.value
+   })
   },
   render: function() {
     return (
@@ -148,7 +161,7 @@ let MainComponent = createReactClass({
           <span className="col-xs-12" style={{ fontFamily: "verdana" }}>
             Size
           </span>
-          <ButtonGroup className="col-xs-offset-2 col-xs-8">
+          <ButtonGroup className="col-xs-offset-2 col-xs-8" onChange={this.onSizeChange}>
             <Button>XS</Button>
             <Button>S</Button>
             <Button>M</Button>
@@ -162,12 +175,12 @@ let MainComponent = createReactClass({
             Color
           </span>
           <div className="col-xs-offset-2 col-xs-8">
-            <button className="button"></button>
-            <button className="button button2"></button>
-            <button className="button button3"></button>
-            <button className="button button4"></button>
-            <button className="button button5"></button>
-            <button className="button button6"></button>
+            <button className="button" value="yellow" onClick={this.setColor}></button>
+            <button className="button button2" value="red" onClick={this.setColor}></button>
+            <button className="button button3" value="green" onClick={this.setColor}></button>
+            <button className="button button4" value="black" onClick={this.setColor}></button>
+            <button className="button button5" value="white" onClick={this.setColor}></button>
+            <button className="button button6" value="orange" onClick={this.setColor}></button>
           </div>
         </div>
         <hr></hr>

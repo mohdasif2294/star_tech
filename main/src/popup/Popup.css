@@ -39,7 +39,7 @@
 }
 
 .button {
-  background-color: #4CAF50;
+  background-color: yellow;
   /* Green */
   border: none;
   color: white;
@@ -58,28 +58,28 @@
 }
 
 .button2 {
-  background-color: rgb(43, 155, 192);
+  background-color: red;
 }
 
 /* Blue */
 .button3 {
-  background-color: #ad3931;
+  background-color: green;
 }
 
 /* Red */
 .button4 {
-  background-color: #733abe;
+  background-color: black;
   color: black;
 }
 
 /* Gray */
 .button5 {
-  background-color: #974444;
+  background-color: white;
 }
 
 /* Black */
-.button5 {
-  background-color: #82b6b8;
+.button6 {
+  background-color: orange;
 }
 
 .popup-greet {
