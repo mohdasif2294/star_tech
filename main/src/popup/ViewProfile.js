@@ -5,6 +5,7 @@ import "./Popup.css";
 import "../css/bootstrap.min.css";
 import { Button, ButtonGroup } from "reactstrap";
 import { RadioGroup, RadioButton } from "react-radio-buttons";
+import "./index.css";
 
 let ViewProfile = createReactClass({
   getInitialState: function() {
@@ -141,6 +142,8 @@ let ViewProfile = createReactClass({
             </select>
           </div>
         </div>
+
+        <hr className="hr"></hr>
         {Object.keys(self.state.profileDetails).length > 0 ? (
           <div>
             <div className="row container-fluid margin-top">
@@ -158,6 +161,8 @@ let ViewProfile = createReactClass({
               </div>
             </div>
 
+            <hr className="hr"></hr>
+
             <div className="row container-fluid margin-top">
               <div className="col-xs-3 fontBold"> Brands: </div>
               <div className="row container-fluid">
@@ -170,6 +175,8 @@ let ViewProfile = createReactClass({
                 </div>
               </div>
             </div>
+
+            <hr className="hr"></hr>
 
             <div className="row container-fluid margin-top">
               <div className="col-xs-3 fontBold"> Size: </div>
@@ -187,17 +194,19 @@ let ViewProfile = createReactClass({
               </div>
             </div>
 
+            <hr className="hr"></hr>
+
             <div className="row container-fluid margin-top">
               <div className="col-xs-3 fontBold"> Color: </div>
               <div className="row container-fluid">
                 <div className="col-xs-12">
-                  <ButtonGroup>
+                  <ButtonGroup >
                     {self.state.profileDetails["colorList"].map(function(
                       color,
                       idx
                     ) {
                       return (
-                        <Button key={idx} className="btnStyle">
+                        <Button key={idx} className="btnStyle ">
                           {color}
                         </Button>
                       );
@@ -207,6 +216,8 @@ let ViewProfile = createReactClass({
               </div>
             </div>
 
+            <hr className="hr"></hr>
+
             <div className="row container-fluid margin-top">
               <div
                 className="col-md-4 col-lg-4 col-xs-offset-3 col-xs-6 margin-top"
@@ -214,7 +225,7 @@ let ViewProfile = createReactClass({
               >
                 <button
                   style={{ backgroundColor: "#e74c3c" }}
-                  className="btn submitBtnStyle"
+                  className="btn submitBtnStyle margin-bottom"
                   onClick={self.onRemoveProfile}
                 >
                   <svg
@@ -235,6 +246,7 @@ let ViewProfile = createReactClass({
                   REMOVE
                 </button>
               </div>
+              <hr className="end-hr"></hr>
             </div>
           </div>
         ) : self.state.isLoaded == true ? (
