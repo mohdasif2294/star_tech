@@ -159,8 +159,8 @@ let ViewProfile = createReactClass({
         idx++
       ) {
         let brand = {
-          name: self.state.profileDetails["brandList"][idx],
-          id: idx
+          "name": self.state.profileDetails["brandList"][idx],
+          "id": idx + 1
         };
         brands.push(brand);
       }

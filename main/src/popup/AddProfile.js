@@ -22,7 +22,11 @@ let MainComponent = createReactClass({
         { name: "Levis", id: 1 },
         { name: "Nike", id: 1 },
         { name: "Roadster", id: 1 },
-        { name: "Hrx", id: 1 }
+        { name: "Hrx", id: 1 },
+        { name: "Peter England", id: 1 },
+        { name: "UCB", id: 1 },
+        { name: "Tommy Hilfiger", id: 1 },
+        { name: "Van heusen", id: 1 }
       ],
       selectedCategoryValue: [],
       selectedBrandValue: [],
