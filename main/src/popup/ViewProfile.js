@@ -43,16 +43,25 @@ let ViewProfile = createReactClass({
 
   onSelect: function(e) {
     if (e.target.value == "disabled") {
+      this.setState({
+        selectedProfile: "shoes",
+        profileList: ["shoes", "tshirt", "trousers"],
+        isLoaded: true,
+        profileDetails: {
+          brandList: [
+            { id: 0, name: "Levis" },
+            { id: 1, name: "Puma" }
+          ],
+          sizeList: ["M", "XS", "L"],
+          genderList: ["male"],
+          colorList: ["RED", "ORANGE", "GREEN"]
+        }
+      });
       return;
     }
 
     let profile = e.target.value;
-
     this.fetchProfileData(profile);
-
-    this.setState({
-      selectedProfile: profile
-    });
   },
 
   fetchProfileData: function(profile) {
@@ -64,12 +73,13 @@ let ViewProfile = createReactClass({
         let profileDetails = {};
 
         profileDetails["brandList"] = profilesMap[key]["brands"];
-        profileDetails["sizeList"] = profilesMap[key]["size"];
+        profileDetails["sizeList"] = profilesMap[key]["sizes"];
         profileDetails["genderList"] = profilesMap[key]["gender"];
-        profileDetails["colorList"] = profilesMap[key]["color"];
+        profileDetails["colorList"] = profilesMap[key]["colors"];
         self.setState({
           profileDetails: profileDetails,
-          isLoaded: true
+          isLoaded: true,
+          selectedProfile: profile
         });
       }
     });
@@ -118,6 +128,9 @@ let ViewProfile = createReactClass({
               <option value="disabled" key="a_b" defaultValue>
                 Choose Profile
               </option>
+              <option value="disabled1" key="a_b1">
+                test
+              </option>
               {self.state.profileList.map(function(profile, idx) {
                 return (
                   <option value={profile} key={profile}>
@@ -130,27 +143,23 @@ let ViewProfile = createReactClass({
         </div>
         {Object.keys(self.state.profileDetails).length > 0 ? (
           <div>
-            <div className="row container-fluid">
+            <div className="row container-fluid margin-top">
               <div className="col-xs-3 fontBold">Gender</div>
-              <div className="col-xs-9">
+              <div className="col-xs-3">
                 <RadioGroup horizontal value="">
                   {self.state.profileDetails["genderList"].map(function(
                     gender,
                     idx
                   ) {
                     console.log("GenderList", gender);
-                    return (
-                      <RadioButton value={gender} disabled>
-                        {gender}
-                      </RadioButton>
-                    );
+                    return <RadioButton value={gender}>{gender}</RadioButton>;
                   })}
                 </RadioGroup>
               </div>
             </div>
 
-            <div className="row container-fluid">
-              <div className="col-xs-3"> Brands: </div>
+            <div className="row container-fluid margin-top">
+              <div className="col-xs-3 fontBold"> Brands: </div>
               <div className="row container-fluid">
                 <div className="col-xs-12">
                   <Multiselect
@@ -162,8 +171,8 @@ let ViewProfile = createReactClass({
               </div>
             </div>
 
-            <div className="row container-fluid">
-              <div className="col-xs-3"> Size: </div>
+            <div className="row container-fluid margin-top">
+              <div className="col-xs-3 fontBold"> Size: </div>
               <div className="row container-fluid">
                 <div className="col-xs-12">
                   <ButtonGroup>
@@ -171,15 +180,15 @@ let ViewProfile = createReactClass({
                       size,
                       idx
                     ) {
-                      return <Button key={idx}>{size}</Button>;
+                      return <Button key={idx} className="btnStyle">{size}</Button>;
                     })}
                   </ButtonGroup>
                 </div>
               </div>
             </div>
 
-            <div className="row container-fluid">
-              <div className="col-xs-3"> Color: </div>
+            <div className="row container-fluid margin-top">
+              <div className="col-xs-3 fontBold"> Color: </div>
               <div className="row container-fluid">
                 <div className="col-xs-12">
                   <ButtonGroup>
@@ -187,14 +196,18 @@ let ViewProfile = createReactClass({
                       color,
                       idx
                     ) {
-                      return <Button key={idx}>{color}</Button>;
+                      return (
+                        <Button key={idx} className="btnStyle">
+                          {color}
+                        </Button>
+                      );
                     })}
                   </ButtonGroup>
                 </div>
               </div>
             </div>
 
-            <div className="row container-fluid">
+            <div className="row container-fluid margin-top">
               <div
                 className="col-md-4 col-lg-4 col-xs-offset-3 col-xs-6 margin-top"
                 style={{ textAlign: "center" }}
