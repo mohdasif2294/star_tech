@@ -9,6 +9,53 @@ import "./index.css";
 
 let ViewProfile = createReactClass({
   getInitialState: function() {
+    // https://tc39.github.io/ecma262/#sec-array.prototype.findindex
+    if (!Array.prototype.findIndex) {
+      Object.defineProperty(Array.prototype, "findIndex", {
+        value: function(predicate) {
+          // 1. Let O be ? ToObject(this value).
+          if (this == null) {
+            throw new TypeError('"this" is null or not defined');
+          }
+
+          var o = Object(this);
+
+          // 2. Let len be ? ToLength(? Get(O, "length")).
+          var len = o.length >>> 0;
+
+          // 3. If IsCallable(predicate) is false, throw a TypeError exception.
+          if (typeof predicate !== "function") {
+            throw new TypeError("predicate must be a function");
+          }
+
+          // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
+          var thisArg = arguments[1];
+
+          // 5. Let k be 0.
+          var k = 0;
+
+          // 6. Repeat, while k < len
+          while (k < len) {
+            // a. Let Pk be ! ToString(k).
+            // b. Let kValue be ? Get(O, Pk).
+            // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »)).
+            // d. If testResult is true, return k.
+            var kValue = o[k];
+            if (predicate.call(thisArg, kValue, k, o)) {
+              return k;
+            }
+            // e. Increase k by 1.
+            k++;
+          }
+
+          // 7. Return -1.
+          return -1;
+        },
+        configurable: true,
+        writable: true
+      });
+    }
+
     return {
       selectedProfile: "",
       profileList: [],
@@ -54,7 +101,7 @@ let ViewProfile = createReactClass({
             { id: 1, name: "Puma" }
           ],
           sizeList: ["M", "XS", "L"],
-          genderList: ["male"],
+          genderList: "male",
           colorList: ["RED", "ORANGE", "GREEN"]
         }
       });
@@ -68,8 +115,9 @@ let ViewProfile = createReactClass({
   fetchProfileData: function(profile) {
     let self = this;
     let profilesMap = self.state.profilesMap;
+    console.log("In fetchProfileData1", profile);
     Object.keys(profilesMap).forEach((key, idx) => {
-      console.log("key", key, data.profile[key], profile);
+      console.log("In fetchProfileData2", key, profilesMap[key], profile);
       if (key == profile) {
         let profileDetails = {};
 
@@ -116,6 +164,24 @@ let ViewProfile = createReactClass({
       self.state,
       Object.keys(self.state.profileDetails).length
     );
+
+    let brands = [];
+    if (typeof self.state.profileDetails["brandList"] !== "undefined") {
+      for (
+        let idx = 0;
+        idx < self.state.profileDetails["brandList"].length;
+        idx++
+      ) {
+        let brand = {
+          name: self.state.profileDetails["brandList"][idx],
+          id: idx
+        };
+        brands.push(brand);
+      }
+    }
+
+    console.log("Brands:" ,brands)
+
     return (
       <div className="row container-fluid margin-top">
         <div className="row container-fluid content">
@@ -149,15 +215,15 @@ let ViewProfile = createReactClass({
             <div className="row container-fluid margin-top">
               <div className="col-xs-3 fontBold">Gender</div>
               <div className="col-xs-3">
-                <RadioGroup horizontal value="">
-                  {self.state.profileDetails["genderList"].map(function(
-                    gender,
-                    idx
-                  ) {
-                    console.log("GenderList", gender);
-                    return <RadioButton value={gender}>{gender}</RadioButton>;
-                  })}
-                </RadioGroup>
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value={self.state.profileDetails["genderList"]}
+                    checked
+                  />
+                  <span>{self.state.profileDetails["genderList"]}</span>
+                </label>
               </div>
             </div>
 
@@ -168,7 +234,7 @@ let ViewProfile = createReactClass({
               <div className="row container-fluid">
                 <div className="col-xs-12">
                   <Multiselect
-                    selectedValues={self.state.profileDetails["brandList"]}
+                    selectedValues={brands}
                     displayValue="brands"
                     displayValue="key"
                   />
@@ -177,7 +243,6 @@ let ViewProfile = createReactClass({
             </div>
 
             <hr className="hr"></hr>
-
             <div className="row container-fluid margin-top">
               <div className="col-xs-3 fontBold"> Size: </div>
               <div className="row container-fluid">
@@ -187,7 +252,11 @@ let ViewProfile = createReactClass({
                       size,
                       idx
                     ) {
-                      return <Button key={idx} className="btnStyle">{size}</Button>;
+                      return (
+                        <Button key={idx} className="btnStyle">
+                          {size}
+                        </Button>
+                      );
                     })}
                   </ButtonGroup>
                 </div>
@@ -200,7 +269,7 @@ let ViewProfile = createReactClass({
               <div className="col-xs-3 fontBold"> Color: </div>
               <div className="row container-fluid">
                 <div className="col-xs-12">
-                  <ButtonGroup >
+                  <ButtonGroup>
                     {self.state.profileDetails["colorList"].map(function(
                       color,
                       idx
