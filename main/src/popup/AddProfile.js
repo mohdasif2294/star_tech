@@ -24,18 +24,83 @@ let MainComponent = createReactClass({
         { name: "Roadster", id: 1 },
         { name: "Hrx", id: 1 }
       ],
-      selectedValue: [],
-      value: { min: 2, max: 10 }
+      selectedCategoryValue: [],
+      selectedBrandValue: [],
+      value: { min: 2, max: 10 },
+      gender:""
     };
   },
-  onSelect: function() {
-    console.log("yes");
+  onSelect: function(value) {
+    var list = this.state.selectedCategoryValue
+    var index = list.indexOf(value);
+    list.splice(index, 1);
+    list.push(value)
+    this.setState({
+        selectedCategoryValue: list
+    })
+    console.log(this.state.selectedCategoryValue)
   },
-  onRemove: function() {
-    console.log("no");
+  onRemove: function(value) {
+    var list = this.state.selectedCategoryValue
+    var index = list.indexOf(value);
+    list.splice(index, 1);
+    this.setState({
+        selectedCategoryValue: list
+    })
+    console.log(this.state.selectedCategoryValue)
   },
-  onGenderClick: function() {
-    console.log("ok");
+  onGenderClick: function(value) {
+    this.setState({
+        gender:value
+    })
+  },
+  onBrandSelect: function(value) {
+    var list = this.state.selectedBrandValue
+    var index = list.indexOf(value);
+    list.splice(index, 1);
+    list.push(value)
+    this.setState({
+        selectedBrandValue: list
+    })
+    console.log(this.state.selectedBrandValue)
+  },
+  onBrandRemove: function(value) {
+    var list = this.state.selectedBrandValue
+    var index = list.indexOf(value);
+    list.splice(index, 1);
+    this.setState({
+        selectedBrandValue: list
+    })
+    console.log(this.state.selectedBrandValue)
+  },
+  onApply: function () {
+    var finalCategory = []
+    var finalBrands = []
+    var category = this.state.selectedCategoryValue
+    var brands = this.state.selectedBrandValue
+    var gender = this.state.gender
+    var sizes = ['M']
+    for (var index = 0; index < category[0].length; index++) {  
+         finalCategory.push(category[0][index].name)
+    } 
+    for (var index = 0; index < brands[0].length; index++) { 
+            finalBrands.push(brands[0][index].name)
+   } 
+   console.log('yoo', finalCategory, finalBrands)
+    chrome.storage.sync.get('profile',function(items) {
+        if (typeof items.profile === 'undefined'){
+            items.profile = {};
+        }
+        items.profile[finalCategory[0]] = {"brands":finalBrands, "size":sizes}
+        chrome.storage.sync.set(items, function() {
+            console.log('Data successfully saved to the storage!');
+        });
+    });
+    chrome.storage.sync.get('profile', function(data){
+        console.log("asd",data.profile);
+        alert(JSON.stringify(data['profile']));
+    });
+    //alert("Your filter are saved successfully, head to View Profile page for details")
   },
   render: function() {
     return (
@@ -58,7 +123,7 @@ let MainComponent = createReactClass({
           <hr></hr>
           <Multiselect
             options={this.state.categoryoptions} // Options to display in the dropdown
-            selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
+            selectedValues={this.state.selectedCategoryValue} // Preselected value to persist in dropdown
             onSelect={this.onSelect} // Function will trigger on select event
             onRemove={this.onRemove} // Function will trigger on remove event
             displayValue="name" // Property name to display in the dropdown options
@@ -72,9 +137,9 @@ let MainComponent = createReactClass({
           <hr></hr>
           <Multiselect
             options={this.state.brandoptions} // Options to display in the dropdown
-            selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
-            onSelect={this.onSelect} // Function will trigger on select event
-            onRemove={this.onRemove} // Function will trigger on remove event
+            selectedValues={this.state.selectedBrandValue} // Preselected value to persist in dropdown
+            onSelect={this.onBrandSelect} // Function will trigger on select event
+            onRemove={this.onBrandRemove} // Function will trigger on remove event
             displayValue="name" // Property name to display in the dropdown options
           />
         </div>
@@ -97,16 +162,16 @@ let MainComponent = createReactClass({
             Color
           </span>
           <div className="col-xs-offset-2 col-xs-8">
-            <button class="button"></button>
-            <button class="button button2"></button>
-            <button class="button button3"></button>
-            <button class="button button4"></button>
-            <button class="button button5"></button>
-            <button class="button button6"></button>
+            <button className="button"></button>
+            <button className="button button2"></button>
+            <button className="button button3"></button>
+            <button className="button button4"></button>
+            <button className="button button5"></button>
+            <button className="button button6"></button>
           </div>
         </div>
         <hr></hr>
-        <Button variant="secondary" size="lg" block color="blue">
+        <Button variant="secondary" size="lg" block color="blue" onClick={this.onApply}>
           Apply Filters
         </Button>
       </div>
