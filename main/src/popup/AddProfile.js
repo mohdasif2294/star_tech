@@ -96,7 +96,7 @@ let MainComponent = createReactClass({
             items.profile = {};
         }
         delete items.profile.selectedProfile;
-        items.profile[finalCategory[0]] = {"brands":finalBrands, "sizes":sizes, "gender":gender, "colors":finalcolors}
+        items.profile[finalCategory[0].toLowerCase()] = {"brands":finalBrands, "sizes":sizes, "gender":gender, "colors":finalcolors}
         chrome.storage.sync.set(items, function() {
             console.log('Data successfully saved to the storage!');
         });
